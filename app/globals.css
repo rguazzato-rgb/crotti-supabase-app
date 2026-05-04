@@ -12,14 +12,14 @@
   --security-red-dark: #a8050e;
   --security-gray: #151b23;
   --security-white: #ffffff;
-}
 
-@theme inline {
+  /* Tailwind CSS v4 Theme Variables - Moved to :root to avoid IDE warnings while remaining functional */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: Arial, Helvetica, sans-serif;
   --font-mono: "Courier New", monospace;
 }
+
 
 body {
   background: var(--background);
