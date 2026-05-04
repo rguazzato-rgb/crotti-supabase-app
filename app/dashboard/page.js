@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabaseClient';
 import ProtectedRoute from '@/components/ProtectedRoute';
 
 export default function Dashboard() {
@@ -14,11 +13,6 @@ export default function Dashboard() {
     };
     getUser();
   }, []);
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    window.location.href = '/';
-  };
 
   return (
     <ProtectedRoute>
