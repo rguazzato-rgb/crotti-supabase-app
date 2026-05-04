@@ -7,6 +7,7 @@ export const metadata = {
     'Portale digitale Crotti Safety: manutenzione programmata, pronto intervento e gestione documentale per la compliance antincendio.',
 };
 
+// Build timestamp: 2026-05-04 17:55
 export default function Home() {
   return (
     <>
