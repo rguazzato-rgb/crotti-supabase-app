@@ -11,6 +11,7 @@ import {
   getUsers,
 } from '@/lib/crottiData';
 import EventsCalendar from '@/components/Calendar';
+import StatusBadge from '@/components/StatusBadge';
 
 const ADMIN_EMAIL = 'r.guazzato@studenti.unibg.it';
 
@@ -157,13 +158,7 @@ export default function CrottiPortal({ user }) {
               <p>Partner per la continuita della sicurezza e la compliance operativa.</p>
             </div>
 
-            <div className="status-badge glass-card">
-              <div className="status-icon">OK</div>
-              <div className="status-info">
-                <strong>Stato conformita: OK</strong>
-                <span>I presidi antincendio sono gestiti correttamente.</span>
-              </div>
-            </div>
+            <StatusBadge status="OK" description="I presidi antincendio sono gestiti correttamente." />
           </header>
 
           <section className="kpi-grid" aria-label="Indicatori interventi">
