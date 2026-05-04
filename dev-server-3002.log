@@ -1,0 +1,10 @@
+
+> supabase-nextjs-app@0.1.0 dev
+> next dev -p 3002 -H 127.0.0.1
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://127.0.0.1:3002
+- Network:       http://127.0.0.1:3002
+- Environments: .env.local
+✓ Ready in 1846ms
+[?25h

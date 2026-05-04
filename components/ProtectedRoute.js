@@ -4,41 +4,59 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 
-export default function ProtectedRoute({ children }) {
+export default function ProtectedRoute({ children, onUser }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [session, setSession] = useState(null);
 
   useEffect(() => {
+    let mounted = true;
+
     const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        router.push('/');
-      } else {
-        setSession(session);
-        setLoading(false);
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (!mounted) return;
+
+      if (error || !session) {
+        onUser?.(null);
+        // FIX: replace evita di lasciare una route protetta nella history del browser.
+        router.replace('/login');
+        return;
       }
+
+      onUser?.(session.user);
+      setLoading(false);
     };
 
     checkSession();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT') {
-        router.push('/');
-      } else {
-        setSession(session);
+        onUser?.(null);
+        router.replace('/login');
+        return;
+      }
+
+      if (session) {
+        onUser?.(session.user);
+        setLoading(false);
       }
     });
 
     return () => {
-      authListener.subscription.unsubscribe();
+      mounted = false;
+      subscription.unsubscribe();
     };
-  }, [router]);
+  }, [onUser, router]);
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-[#0f172a]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="loading-screen">
+        <div className="spinner" aria-label="Caricamento" />
       </div>
     );
   }
