@@ -1,10 +1,17 @@
-import AuthForm from '@/components/AuthForm';
+import LandingHero from '@/components/LandingHero';
+import LandingServices from '@/components/LandingServices';
 
 export const metadata = {
-  title: 'Login',
-  description: 'Area cliente Crotti Safety con autenticazione Supabase.',
+  title: 'Crotti Safety — Sicurezza Antincendio',
+  description:
+    'Portale digitale Crotti Safety: manutenzione programmata, pronto intervento e gestione documentale per la compliance antincendio.',
 };
 
 export default function Home() {
-  return <AuthForm />;
+  return (
+    <>
+      <LandingHero />
+      <LandingServices />
+    </>
+  );
 }

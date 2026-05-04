@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "react-big-calendar/lib/css/react-big-calendar.css";
 @import "../styles/crotti.css";
+@import "../styles/landing.css";
 
 :root {
   /* FIX: variabili globali agganciate al tema Crotti, senza dark mode automatica invasiva. */

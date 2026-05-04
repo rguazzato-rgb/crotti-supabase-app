@@ -1,5 +1,12 @@
 import "./globals.css";
+import { Inter } from "next/font/google";
 // Force redeploy - 2026-05-04 15:40
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const metadata = {
   title: {
@@ -25,8 +32,9 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="it" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="it" className={`h-full antialiased ${inter.variable}`}>
+      <body className="min-h-full flex flex-col" style={{ fontFamily: "var(--font-inter), Arial, Helvetica, sans-serif" }}>{children}</body>
     </html>
   );
 }
+
